@@ -17,7 +17,7 @@ if __name__ == '__main__':
     # training
     params = dict(
         learning_rate=0.05,
-        n_iter=100,
+        n_iter=1000,
         batch_size=32,
         n_features=X_train.shape[1],
     )

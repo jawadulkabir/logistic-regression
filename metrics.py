@@ -24,12 +24,17 @@ def precision_score(y_true, y_pred):
     :return:
     """
     # todo: implement
-    #count number of true positives
-    count = 0
-    for i in range(len(y_true)):
-        if y_true[i] == 1 and y_pred[i] == 1:
-            count += 1
-    return count/np.count_nonzero(y_pred == 1)
+
+    tp = np.count_nonzero(np.logical_and(y_pred == y_true, y_pred == 1))
+    pp = np.count_nonzero(y_pred == 1)
+# x = X[i].reshape(n_features,1)
+#                 y_hat = self.sigmoid(np.dot(theta.T,x))
+#                 error = y[i] - y_hat
+#                 gradient = np.dot(x,error)
+#                 theta = theta + self.learning_rate*gradient
+
+# what are the things to keep in mind while implementing logistic regression from scratch in python?
+    return tp/pp
 
 
 def recall_score(y_true, y_pred):
@@ -40,12 +45,10 @@ def recall_score(y_true, y_pred):
     :return:
     """
     # todo: implement
-    #count number of true positives
-    count = 0
-    for i in range(len(y_true)):
-        if y_true[i] == 1 and y_pred[i] == 1:
-            count += 1
-    return count/np.count_nonzero(y_true == 1)
+
+    tp = np.count_nonzero(np.logical_and(y_pred == y_true, y_true == 1))
+    p = np.count_nonzero(y_true == 1)
+    return tp/p
 
 
 def f1_score(y_true, y_pred):

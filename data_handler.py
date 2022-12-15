@@ -35,8 +35,6 @@ def split_dataset(X, y, test_size, shuffle):
     # todo: implement.
     test_set_size = int(test_size*X.shape[0])
     train_set_size = X.shape[0] - test_set_size
-    print(train_set_size)
-    print(test_set_size)
 
     #merge X and y to make one matrix before shuffling
     data = np.concatenate((X,y), axis=1)
@@ -49,14 +47,6 @@ def split_dataset(X, y, test_size, shuffle):
     X_train, y_train = data[0:train_set_size,0:ncols-1], data[0:train_set_size,ncols-1]
     X_test, y_test = data[train_set_size:train_set_size+test_set_size, 0:ncols-1], data[train_set_size:train_set_size+test_set_size, ncols-1]
 
-    #make y 2D 
-    # y_train = y_train.reshape(y_train.shape[0],1)
-    # y_test = y_test.reshape(y_test.shape[0],1)
-
-    print(X_train.shape)
-    print(y_train.shape)
-    print(X_test.shape)
-    print(y_test.shape)
 
     return X_train, y_train, X_test, y_test
 

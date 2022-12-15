@@ -7,16 +7,12 @@ class LogisticRegression:
         :param params:
         """
         # todo: implement
-        # print(params)
-        # for x in params:
-        #     print(x,type(x),type(params[x]),end="\n\n\n")
 
         self.learning_rate = params['learning_rate']
         self.n_iter = params['n_iter']
         self.n_features = params['n_features']
 
         self.theta = np.random.randn(self.n_features)
-        print(self.theta)
 
     def sigmoid(self, z):
         """
@@ -47,14 +43,15 @@ class LogisticRegression:
                 h = self.sigmoid(np.dot(x, self.theta))
                 gradient = np.dot((y[i]-h), x)
                 self.theta = self.theta + self.learning_rate * gradient
-                try:
-                    loss += -y[i]*np.log(h,where=h>0) - (1-y[i])*np.log(1-h,where=1-h>0)
-                except:
-                    print("epoch ",epoch," RuntimeWarning ", "h: ")
+
+            #     try:
+            #         loss += -y[i]*np.log(h,where=h>0) - (1-y[i])*np.log(1-h,where=1-h>0)
+            #     except:
+            #         print("epoch ",epoch," RuntimeWarning ", "h: ")
             
-            if epoch%5==0:
-                print("Epoch: {}, Loss: {}".format(epoch, loss))
-                #print(self.theta)   
+            # if epoch%500==0:
+            #     print("Epoch: {}, Loss: {}".format(epoch, loss))
+            #     print(self.theta)   
 
     def predict(self, X):
         """
@@ -67,14 +64,3 @@ class LogisticRegression:
         y_pred = self.sigmoid(y_pred)
         y_pred = np.where(y_pred > 0.5, 1, 0)
         return y_pred
-
-
-
-
-# x = X[i].reshape(n_features,1)
-#                 y_hat = self.sigmoid(np.dot(theta.T,x))
-#                 error = y[i] - y_hat
-#                 gradient = np.dot(x,error)
-#                 theta = theta + self.learning_rate*gradient
-
-# what are the things to keep in mind while implementing logistic regression from scratch in python?
