@@ -16,6 +16,9 @@ def load_dataset():
 
     X = X.to_numpy()
     y = y.to_numpy()
+
+    #add column of ones to X for theta0
+    X = np.concatenate((np.ones((X.shape[0],1)),X), axis=1)
     
     return X, y
 
@@ -47,8 +50,8 @@ def split_dataset(X, y, test_size, shuffle):
     X_test, y_test = data[train_set_size:train_set_size+test_set_size, 0:ncols-1], data[train_set_size:train_set_size+test_set_size, ncols-1]
 
     #make y 2D 
-    y_train = y_train.reshape(y_train.shape[0],1)
-    y_test = y_test.reshape(y_test.shape[0],1)
+    # y_train = y_train.reshape(y_train.shape[0],1)
+    # y_test = y_test.reshape(y_test.shape[0],1)
 
     print(X_train.shape)
     print(y_train.shape)

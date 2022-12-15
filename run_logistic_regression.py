@@ -12,12 +12,19 @@ if __name__ == '__main__':
     X, y = load_dataset()
 
     # split train and test
-    X_train, y_train, X_test, y_test = split_dataset(X, y, 0.1766, True)
+    X_train, y_train, X_test, y_test = split_dataset(X, y, 0.3, True)
 
     # training
-    params = dict()
+    params = dict(
+        learning_rate=0.05,
+        n_iter=100,
+        batch_size=32,
+        n_features=X_train.shape[1],
+    )
+
     classifier = LogisticRegression(params)
-    print(type(classifier))
+
+    # training
     classifier.fit(X_train, y_train)
 
     # testing
