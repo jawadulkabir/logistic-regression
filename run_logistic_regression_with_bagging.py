@@ -12,18 +12,22 @@ if __name__ == '__main__':
     X, y = load_dataset()
 
     # split train and test
-    X_train, y_train, X_test, y_test = split_dataset(X, y)
+    X_train, y_train, X_test, y_test = split_dataset(X, y, 0.3, True)
 
     # training
-    params = dict()
-    base_estimator = LogisticRegression(params)
-    classifier = BaggingClassifier(base_estimator=base_estimator, n_estimator=9)
+    params = dict(
+        learning_rate=0.05,
+        n_iter=10,
+        n_features=X_train.shape[1],
+    )
+    base_estimator = LogisticRegression
+    classifier = BaggingClassifier(base_estimator=base_estimator, n_estimator=9, params=params)
     classifier.fit(X_train, y_train)
 
     # testing
     y_pred = classifier.predict(X_test)
 
-    # performance on test set
+    #performance on test set
     print('Accuracy ', accuracy(y_true=y_test, y_pred=y_pred))
     print('Recall score ', recall_score(y_true=y_test, y_pred=y_pred))
     print('Precision score ', precision_score(y_true=y_test, y_pred=y_pred))
